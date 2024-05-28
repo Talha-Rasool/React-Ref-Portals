@@ -18,10 +18,16 @@ export default function TimerChallenge({ title, targetTime }) {
 
   if (timeRemaining <= 0) {
     clearInterval(timer.current);
-    setTimeRemaining(targetTime * 1000); //Not Ideal to reset state. But due to If statement Its possible
+    //setTimeRemaining(targetTime * 1000); //Not Ideal to reset state. But due to If statement Its possible
     dialog.current.open();
 
         
+  }
+
+  function resetTime(){
+    setTimeRemaining(targetTime * 1000); //Not Ideal to reset state. But due to If statement Its possible
+
+
   }
 
   function handleStart() {
@@ -37,7 +43,7 @@ export default function TimerChallenge({ title, targetTime }) {
   }
   return (
     <>
-       <ResultModal ref={dialog} targetTime={targetTime} result="lost" />
+       <ResultModal ref={dialog} targetTime={targetTime}  reaminigTime={timeRemaining} onReset={resetTime}/>
 
       <section className="challenge">
         <h2>{title}</h2>
